@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+    sqldb:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+
+    complevo.assesment.api:
+        image: ${DOCKER_REGISTRY-}complevoassesmentapi
+        build:
+            context: .
+            dockerfile: Complevo.Assesment.Api/Dockerfile
+        depends_on:
+            - sqldb
