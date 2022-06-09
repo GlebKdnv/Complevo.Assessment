@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Complevo.Assesment.Data.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20220607150129_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220608151958_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,11 +25,11 @@ namespace Complevo.Assesment.Data.Migrations
 
             modelBuilder.Entity("Complevo.Assesment.Data.Entities.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()

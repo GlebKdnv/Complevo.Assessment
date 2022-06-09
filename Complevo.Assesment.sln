@@ -3,11 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Complevo.Assesment.Api", "Complevo.Assesment.Api\Complevo.Assesment.Api.csproj", "{6C02B90A-A3BC-4916-B8FC-E075F6D9B7B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Complevo.Assesment.Api", "Complevo.Assesment.Api\Complevo.Assesment.Api.csproj", "{6C02B90A-A3BC-4916-B8FC-E075F6D9B7B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Complevo.Assesment.Data", "Complevo.Assesment.Data\Complevo.Assesment.Data.csproj", "{DB8924C1-7AE1-4E03-84A7-9985777F3125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Complevo.Assesment.Data", "Complevo.Assesment.Data\Complevo.Assesment.Data.csproj", "{DB8924C1-7AE1-4E03-84A7-9985777F3125}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{24E56653-2AC6-46A3-8657-1E34A0F0112C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Complevo.Assesment.Services", "Complevo.Assesment.Services\Complevo.Assesment.Services.csproj", "{20317674-64F2-4E4E-8FBF-B5409FC778B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{629459D2-B9C5-4641-97CE-689441E2769F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Complevo.Assesment.Test", "Complevo.Assesment.Test\Complevo.Assesment.Test.csproj", "{28BE366D-953D-4E82-AE67-E259B0AA6903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +36,14 @@ Global
 		{24E56653-2AC6-46A3-8657-1E34A0F0112C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24E56653-2AC6-46A3-8657-1E34A0F0112C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24E56653-2AC6-46A3-8657-1E34A0F0112C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20317674-64F2-4E4E-8FBF-B5409FC778B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20317674-64F2-4E4E-8FBF-B5409FC778B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20317674-64F2-4E4E-8FBF-B5409FC778B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20317674-64F2-4E4E-8FBF-B5409FC778B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BE366D-953D-4E82-AE67-E259B0AA6903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BE366D-953D-4E82-AE67-E259B0AA6903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BE366D-953D-4E82-AE67-E259B0AA6903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BE366D-953D-4E82-AE67-E259B0AA6903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
