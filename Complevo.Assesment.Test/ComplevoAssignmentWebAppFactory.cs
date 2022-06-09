@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Complevo.Assesment.Data;
@@ -16,9 +17,9 @@ namespace Complevo.Assesment.Test
     internal class ComplevoAssignmentWebAppFactory : WebApplicationFactory<Program>
     {
         private readonly string _dbName;
-        private readonly Action<ProductContext> _seed;
+        private readonly Action<ApplicationContext> _seed;
 
-        public ComplevoAssignmentWebAppFactory(string dbName,Action<ProductContext> seed)
+        public ComplevoAssignmentWebAppFactory(string dbName,Action<ApplicationContext> seed)
         {
             _dbName = dbName;
             _seed = seed;
@@ -30,12 +31,12 @@ namespace Complevo.Assesment.Test
             {
                 var descriptor = services.SingleOrDefault(
                     d => d.ServiceType ==
-                        typeof(DbContextOptions<ProductContext>));
+                        typeof(DbContextOptions<ApplicationContext>));
 
 
                 services.Remove(descriptor);
 
-                services.AddDbContext<ProductContext>(options =>
+                services.AddDbContext<ApplicationContext>(options =>
                 {
                     options.UseInMemoryDatabase(_dbName);
                 });
@@ -45,7 +46,7 @@ namespace Complevo.Assesment.Test
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<ProductContext>();
+                    var context = scopedServices.GetRequiredService<ApplicationContext>();
                     //var logger = scopedServices
                     //    .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
@@ -59,6 +60,12 @@ namespace Complevo.Assesment.Test
 
                 }
             });
+        }
+
+        public HttpClient CreateClientWithToken(string token)
+        {
+            var client = this.CreateDefaultClient();
+            return client.SetAuth(token);
         }
     }
 }

@@ -14,12 +14,20 @@ namespace Complevo.Assesment.Test.IntegrationTests
 {
     internal class DeleteTest
     {
+        private string _token;
+
+        [SetUp]
+        public async Task Login()
+        {
+            _token = await TestUtiility.GetToken();
+        }
+
         [Test]
         public async Task SimpleDelete()
         {
             int productNumber = 1;
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbDelete1", x => TestUtiility.SeedTestProducts(x, productNumber));
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var response = await client.DeleteAsync(@"/api/Products/1");
             response.EnsureSuccessStatusCode();
             Assert.AreEqual((int)response.StatusCode, StatusCodes.Status200OK);
@@ -30,7 +38,7 @@ namespace Complevo.Assesment.Test.IntegrationTests
         {
             int productNumber = 1;
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbDelete2", x => TestUtiility.SeedTestProducts(x, productNumber));
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var response = await client.DeleteAsync(@"/api/Products/10");            
             Assert.AreEqual((int)response.StatusCode, StatusCodes.Status404NotFound);
         }

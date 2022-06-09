@@ -17,11 +17,19 @@ namespace Complevo.Assesment.Test.IntegrationTests
 {
     internal class CreateTest
     {
+        private string _token;
+
+        [SetUp]
+        public async Task Login()
+        {
+            _token =await TestUtiility.GetToken();
+        }
+
         [Test]
         public async Task SimpleCreate()
         {
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbCreat1", null);
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var newProductDto = new ProductDto
             {
                 Name = "New Prod Name",
@@ -44,7 +52,7 @@ namespace Complevo.Assesment.Test.IntegrationTests
         public async Task DuplicateIdError()
         {
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbCreat2", null);
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var newProductDto = new ProductDto
             {
                 Name = "New Prod Name",
@@ -71,7 +79,7 @@ namespace Complevo.Assesment.Test.IntegrationTests
         public async Task DuplicateNameError()
         {
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbCreat3", null);
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var newProductDto = new ProductDto
             {
                 Name = "New Prod Name",

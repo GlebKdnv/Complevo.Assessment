@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Complevo.Assesment.Data.Migrations
 {
-    [DbContext(typeof(ProductContext))]
-    [Migration("20220608151958_InitialMigration")]
-    partial class InitialMigration
+    [DbContext(typeof(ApplicationContext))]
+    [Migration("20220609042425_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,6 +44,32 @@ namespace Complevo.Assesment.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Complevo.Assesment.Data.Entities.UserAccount", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("UserAccounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "User1",
+                            PasswordHash = "ekFMrDK5gutlMZ4EhNsK7w7vgGd8kC3eux9o/v4EHZY=",
+                            Salt = "WdQNTXWMUcb5mQXUVjXNHQ=="
+                        });
                 });
 #pragma warning restore 612, 618
         }

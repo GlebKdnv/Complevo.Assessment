@@ -17,12 +17,20 @@ namespace Complevo.Assesment.Test.IntegrationTests
 {
     internal class UpdateTest
     {
+        private string _token;
+
+        [SetUp]
+        public async Task Login()
+        {
+            _token = await TestUtiility.GetToken();
+        }
+
         [Test]
         public async Task SimpleUpdate()
         {
             int productNumber = 1;
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbUpdate1", x => TestUtiility.SeedTestProducts(x, productNumber));
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var updProductDto = new ProductDto
             {
                 Id= 1,
@@ -40,7 +48,7 @@ namespace Complevo.Assesment.Test.IntegrationTests
         {
             int productNumber = 1;
             using var app = new ComplevoAssignmentWebAppFactory("InMemDbUpdate2", x => TestUtiility.SeedTestProducts(x, productNumber));
-            using var client = app.CreateDefaultClient();
+            using var client = app.CreateClientWithToken(_token);
             var updProductDto = new ProductDto
             {
                 Id = 3,

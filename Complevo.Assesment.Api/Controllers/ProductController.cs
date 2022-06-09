@@ -1,6 +1,7 @@
 ﻿using Complevo.Assesment.Services;
 using Complevo.Assesment.Services.BusinessException;
 using Complevo.Assesment.Services.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,6 +11,7 @@ namespace Complevo.Assesment.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly ProductService _productService;
@@ -26,10 +28,10 @@ namespace Complevo.Assesment.Api.Controllers
         /// <param name="limit">number of rows to retrieve</param>
         /// <param name="offset">number of rows to skip</param>
         /// <returns></returns>
-        [HttpGet()]
+        [HttpGet()]        
         public async Task<ActionResult<IEnumerable<ProductDto>>> Get(int? limit, int? offset)
         {
-            if (!ModelState.IsValid || limit <= 0 || offset <= 0)
+            if (!ModelState.IsValid || limit <= 0 || offset < 0)
             {
                 return BadRequest();
             }

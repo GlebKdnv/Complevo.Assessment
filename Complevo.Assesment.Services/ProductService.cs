@@ -10,9 +10,9 @@ namespace Complevo.Assesment.Services
     public class ProductService
     {
         private readonly IMapper _mapper;
-        private readonly ProductContext _productContext;
+        private readonly ApplicationContext _productContext;
 
-        public ProductService(IMapper mapper, ProductContext productContext)
+        public ProductService(IMapper mapper, ApplicationContext productContext)
         {
             _mapper = mapper;
             _productContext = productContext;
